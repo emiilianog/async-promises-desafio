@@ -2,14 +2,16 @@ import { ContactsCollection, Contact } from "./models";
 
 export class ContactsControllerOptions {
   action: "get" | "save";
-  params: Contact;
+  params: any;
 }
 
 class ContactsController {
   contacts: ContactsCollection;
+  promise: Promise<any>
   constructor() {
     this.contacts = new ContactsCollection();
-    this.contacts.load();
+    const promesa = this.contacts.load();
+    this.promise = promesa
   }
   processOptions(options: ContactsControllerOptions) {
     var resultado;
